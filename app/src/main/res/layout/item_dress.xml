@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="dress"
+            type="com.mobile.moviegallery.data.model.Movie" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/dressImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="h,9:10"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:loadUrl="@{dress.posterPath}"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dressTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{dress.name}"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="@id/dressImage"
+        app:layout_constraintRight_toRightOf="@id/dressImage"
+        app:layout_constraintTop_toBottomOf="@+id/dressImage"/>
+
+    <TextView
+        android:id="@+id/dressPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="@{`£`+dress.price}"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="@id/dressImage"
+        app:layout_constraintRight_toRightOf="@id/dressImage"
+        app:layout_constraintTop_toBottomOf="@+id/dressTitle"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dressColors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:paddingRight="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        tools:orientation="horizontal"
+        tools:listitem="@layout/item_dress"
+        tools:itemCount="5"
+        app:layout_goneMarginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/dressImage"
+        app:layout_constraintRight_toRightOf="@id/dressImage"
+        app:layout_constraintTop_toBottomOf="@+id/dressPrice"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
