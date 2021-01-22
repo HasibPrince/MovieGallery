@@ -19,12 +19,7 @@ class MovieViewModel @ViewModelInject constructor(private val movieUseCase: Movi
     val movieLiveData: LiveData<PagingData<Movie>>
     get() = _movieLiveData
 
-    fun fetchPosts() {
-        viewModelScope.launch {
-            val movieResult = movieUseCase.fetchMovies()
-            movieResult.collectLatest{
-                _movieLiveData.value = it
-            }
-        }
+    fun fetchPosts(): Flow<PagingData<Movie>> {
+        return movieUseCase.fetchMovies()
     }
 }
