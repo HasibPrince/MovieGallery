@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mobile.moviegallery.data.dao.MovieDao
 import com.mobile.moviegallery.data.model.Movie
+import com.mobile.moviegallery.data.model.MovieDetail
 
 @Database(
-    entities = [Movie::class],
+    entities = [Movie::class, MovieDetail::class],
     version = 1,
     exportSchema = false
 )

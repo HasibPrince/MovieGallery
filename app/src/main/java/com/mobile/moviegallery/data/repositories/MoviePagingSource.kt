@@ -6,7 +6,9 @@ import com.mobile.moviegallery.data.model.Movie
 import timber.log.Timber
 import java.lang.Exception
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class MoviePagingSource @Inject constructor(private val movieRepository: MovieRepository) : PagingSource<Int, Movie>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val page = params.key ?: 1

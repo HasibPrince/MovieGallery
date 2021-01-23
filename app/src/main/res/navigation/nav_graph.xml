@@ -9,5 +9,21 @@
         android:id="@+id/homeFragment"
         android:name="com.mobile.moviegallery.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailPage"
+            app:destination="@id/movieDetailPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailPage"
+        android:name="com.mobile.moviegallery.ui.moviedetail.MovieDetailFragment"
+        android:label="fragment_movie_detail_page"
+        tools:layout="@layout/fragment_movie_detail_page">
+
+        <argument
+            android:name="movieId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+    </fragment>
 </navigation>

@@ -11,7 +11,7 @@ data class Movie(
     val posterPath: String,
     var page: Int
 ) {
-    fun getPosterUrl(): String {
+    fun getPosterUrl(): String { //TODO refactor posterpath
         return "https://image.tmdb.org/t/p/w342$posterPath"
     }
 }

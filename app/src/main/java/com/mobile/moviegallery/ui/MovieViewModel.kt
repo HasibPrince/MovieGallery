@@ -14,11 +14,6 @@ import kotlinx.coroutines.launch
 
 
 class MovieViewModel @ViewModelInject constructor(private val movieUseCase: MovieUseCase) : ViewModel() {
-
-    private val _movieLiveData = MutableLiveData<PagingData<Movie>>()
-    val movieLiveData: LiveData<PagingData<Movie>>
-    get() = _movieLiveData
-
     fun fetchPosts(): Flow<PagingData<Movie>> {
         return movieUseCase.fetchMovies()
     }

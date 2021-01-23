@@ -4,35 +4,50 @@
         <variable
             name="movie"
             type="com.mobile.moviegallery.data.model.Movie" />
+
+        <variable
+            name="shimmerView"
+            type="com.facebook.shimmer.ShimmerFrameLayout" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/dressImage"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="h,9:10"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        app:loadUrl="@{movie.posterUrl}"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/moviePoster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintDimensionRatio="h,9:10"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:loadUrlShimmer="@{movie.posterUrl}"
+            app:shimmer="@{shimmerView}"/>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
 
     <TextView
-        android:id="@+id/dressTitle"
+        android:id="@+id/movieTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@{movie.name}"
         android:textAlignment="center"
         android:gravity="center"
         android:layout_marginTop="5dp"
-        app:layout_constraintLeft_toLeftOf="@id/dressImage"
-        app:layout_constraintRight_toRightOf="@id/dressImage"
-        app:layout_constraintTop_toBottomOf="@+id/dressImage"/>
+        app:layout_constraintLeft_toLeftOf="@id/shimmer"
+        app:layout_constraintRight_toRightOf="@id/shimmer"
+        app:layout_constraintTop_toBottomOf="@id/shimmer"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

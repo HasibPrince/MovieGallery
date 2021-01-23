@@ -7,11 +7,14 @@ import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.mobile.moviegallery.common.ImageLoader
 
-/**
- * Created by Ramiz Raja on 28/05/2020
- */
+@BindingAdapter("loadUrlShimmer", "shimmer")
+fun ImageView.loadUrlShimmer(url: String?, shimmer: ShimmerFrameLayout) {
+    ImageLoader.instance?.load(context, url ?: "", this, shimmer)
+}
+
 @BindingAdapter("loadUrl")
 fun ImageView.loadUrl(url: String?) {
     ImageLoader.instance?.load(context, url ?: "", this)
