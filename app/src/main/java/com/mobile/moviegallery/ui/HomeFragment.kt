@@ -54,14 +54,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
-        binding.movieListRV.adapter = movieAdapter
-        binding.movieListRV.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.movieListRV.addItemDecoration(
-            ItemDecoration(
-                ViewUtils.dpToPx(requireContext(), 20),
-                ViewUtils.dpToPx(requireContext(), 20)
-            )
-        )
+        setupMovieRecyclerView()
+
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 movieViewModel.fetchPosts().collectLatest {
@@ -69,5 +63,17 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setupMovieRecyclerView() {
+        binding.movieListRV.adapter = movieAdapter
+        val spanCount = resources.getInteger(R.integer.span_count)
+        binding.movieListRV.layoutManager = GridLayoutManager(requireContext(), spanCount)
+        binding.movieListRV.addItemDecoration(
+            ItemDecoration(
+                ViewUtils.dpToPx(requireContext(), 20),
+                ViewUtils.dpToPx(requireContext(), 15)
+            )
+        )
     }
 }

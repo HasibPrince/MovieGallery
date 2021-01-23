@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.transition.TransitionInflater
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mobile.moviegallery.data.api.Result
+import com.mobile.moviegallery.data.model.MovieDetail
 import com.mobile.moviegallery.databinding.FragmentMovieDetailPageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,24 +39,28 @@ class MovieDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
         movieDetailViewModel.getMovieDetail(movieId).observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Result.Status.LOADING -> {
-                    binding.progress.visibility = View.VISIBLE
-                    binding.progress.show()
-                }
-                Result.Status.SUCCESS -> {
-                    binding.revenue.visibility = View.VISIBLE
-                    binding.progress.visibility = View.INVISIBLE
-                    binding.movieDetail = it.data
-                    binding.progress.hide()
-                }
-                Result.Status.ERROR -> {
-                    binding.progress.visibility = View.INVISIBLE
-                    showErrorDialog(it.message)
-                    binding.progress.hide()
-                }
-            }
+            handleMovieDetailResult(it)
         })
+    }
+
+    private fun handleMovieDetailResult(it: Result<MovieDetail>) {
+        when (it.status) {
+            Result.Status.LOADING -> {
+                binding.progress.visibility = View.VISIBLE
+                binding.progress.show()
+            }
+            Result.Status.SUCCESS -> {
+                binding.revenue.visibility = View.VISIBLE
+                binding.progress.visibility = View.INVISIBLE
+                binding.movieDetail = it.data
+                binding.progress.hide()
+            }
+            Result.Status.ERROR -> {
+                binding.progress.visibility = View.INVISIBLE
+                showErrorDialog(it.message)
+                binding.progress.hide()
+            }
+        }
     }
 
     private fun showErrorDialog(message: String?) {

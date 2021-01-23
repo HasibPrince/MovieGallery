@@ -1,9 +1,6 @@
 package com.mobile.moviegallery.di
 
 import android.content.Context
-import com.mobile.moviegallery.data.RetrofitInstanceKT
-import com.mobile.moviegallery.data.api.BASE_URL
-import com.mobile.moviegallery.data.api.MovieService
 import com.mobile.moviegallery.data.dao.MovieDao
 import com.mobile.moviegallery.data.database.AppDatabase
 import dagger.Module
